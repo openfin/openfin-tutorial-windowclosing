@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 //------
 
-
 function init(){
     console.log("Dom Loaded ", this);
     try{
@@ -19,7 +18,7 @@ function init(){
 
 function initWithOpenFin(){
     // NB it is 'Window' not 'Application' that the EventListener is being attached to
-    _mainWin = fin.desktop.Window.getCurrent()
+    _mainWin = fin.desktop.Window.getCurrent();
     _mainWin.addEventListener('close-requested', function(e) {
         var challenge = confirm('are you sure?');
         if (challenge == true) {
@@ -31,11 +30,17 @@ function initWithOpenFin(){
     });
 //create an new app
     initNewApp("BGCIROVolumeMatch").then(function(value){
-        apps.push(value)
+        value.getWindow().addEventListener('close-requested', function(e){
+            alert("close requested, but blocked. Close me from the main app.");
+        });
+        apps.push(value);
     });
 // and a second - for good measure...
     initNewApp("BGCIROVolumeMatch2").then(function(value){
-        apps.push(value)
+        value.getWindow().addEventListener('close-requested', function(e){
+            alert("close requested, but blocked. Close me from the main app.");
+        });
+        apps.push(value);
     });
 }
 
