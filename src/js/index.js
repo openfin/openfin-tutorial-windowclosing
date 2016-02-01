@@ -18,8 +18,6 @@ function init(){
 };
 
 function initWithOpenFin(){
-    // Your OpenFin specific code to go here...
-
     // NB it is 'Window' not 'Application' that the EventListener is being attached to
     _mainWin = fin.desktop.Window.getCurrent()
     _mainWin.addEventListener('close-requested', function(e) {
@@ -27,19 +25,16 @@ function initWithOpenFin(){
         if (challenge == true) {
             terminateAllApps();
             _mainWin.close(true);
-
         }else{
             console.log("The confirm was false")
         }
     });
 //create an new app
     initNewApp("BGCIROVolumeMatch").then(function(value){
-        console.log("________ Adding to the array ", value)
         apps.push(value)
     });
 // and a second - for good measure...
     initNewApp("BGCIROVolumeMatch2").then(function(value){
-        console.log("________ Adding to the array ", value)
         apps.push(value)
     });
 }
@@ -77,6 +72,5 @@ function initNewApp(uuid){
             resolve(volumeMatchApplication)
         });
     })
-
 
 }
