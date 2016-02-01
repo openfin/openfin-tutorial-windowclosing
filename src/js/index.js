@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", function(){
 //------
 
 function init(){
-    console.log("Dom Loaded ", this);
     try{
         fin.desktop.main(function(){
             initWithOpenFin();
@@ -19,6 +18,17 @@ function init(){
 function initWithOpenFin(){
     // NB it is 'Window' not 'Application' that the EventListener is being attached to
     _mainWin = fin.desktop.Window.getCurrent();
+
+    document.querySelector("#min-btt").addEventListener('click', function(e){
+        minAll()
+    });
+
+    document.querySelector("#max-btt").addEventListener('click', function(e){
+        maxAll();
+    });
+
+
+
     _mainWin.addEventListener('close-requested', function(e) {
         var challenge = confirm('are you sure?');
         if (challenge == true) {
@@ -30,15 +40,29 @@ function initWithOpenFin(){
     });
 //create an new app
     initNewApp("BGCIROVolumeMatch").then(function(value){
-        value.getWindow().addEventListener('close-requested', function(e){
-            alert("close requested, but blocked. Close me from the main app.");
+        var _childWin = value.getWindow()
+        _childWin.addEventListener('close-requested', function(e){
+            console.log("close requested, but blocked. Close me from the main app.");
+            _childWin.minimize();
         });
         apps.push(value);
     });
 // and a second - for good measure...
     initNewApp("BGCIROVolumeMatch2").then(function(value){
-        value.getWindow().addEventListener('close-requested', function(e){
-            alert("close requested, but blocked. Close me from the main app.");
+        var _childWin2 = value.getWindow()
+        _childWin2.addEventListener('close-requested', function(e){
+            console.log("close requested, but blocked. Close me from the main app.");
+            _childWin2.minimize();
+        });
+        apps.push(value);
+    });
+
+    // and a third - for even better measure...
+    initNewApp("BGCIROVolumeMatch3").then(function(value){
+        var _childWin3 = value.getWindow()
+        _childWin3.addEventListener('close-requested', function(e){
+            console.log("close requested, but blocked. Close me from the main app.");
+            _childWin3.minimize();
         });
         apps.push(value);
     });
@@ -51,6 +75,18 @@ function initNoOpenFin(){
 function terminateAllApps(){
     for(var app in apps ){
         apps[app].terminate();
+    }
+}
+
+function minAll(){
+    for(var app in apps ){
+        apps[app].getWindow().minimize();
+    }
+}
+
+function maxAll(){
+    for(var app in apps ){
+        apps[app].getWindow().restore();
     }
 }
 
