@@ -1,8 +1,8 @@
 {
   "devtools_port": 9090,
   "startup_app": {
-    "name": "OpenFin appseed",
-    "description": "A vanilla appseed for OpenFin applications",
+    "name": "OpenFin windowclosing",
+    "description": "windowclosing",
     "url": "http://localhost:3030",
     "uuid": "openfin-closing-events-demo",
     "autoShow": true
@@ -13,7 +13,7 @@
   },
   "shortcut": {
     "company": "OpenFin",
-    "description": "OpenFin appseed",
-    "name": "OpenFin appseed"
+    "description": "OpenFin windowclosing",
+    "name": "OpenFin windowclosing"
   }
 }

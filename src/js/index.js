@@ -27,8 +27,6 @@ function initWithOpenFin(){
         maxAll();
     });
 
-
-
     _mainWin.addEventListener('close-requested', function(e) {
         var challenge = confirm('are you sure?');
         if (challenge == true) {
@@ -99,11 +97,12 @@ function initNewApp(uuid){
             url: "http://localhost:3030/child.html",
             mainWindowOptions: {
                 name: "BGC IRO Volume Match",
-                autoShow: true,
+                autoShow: false,
                 defaultCentered: true,
                 alwaysOnTop: true,
                 state: "minimized",
-                saveWindowState: true,
+                windowState: "minimized",
+                saveWindowState: false,
                 icon: "favicon.ico"
             }
         }, function () {
