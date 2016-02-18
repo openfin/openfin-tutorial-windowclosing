@@ -15,16 +15,14 @@ initChildWithOpenFin = function(){
   _childApp = fin.desktop.Window.getCurrent();
 
   _childApp.show(function() {
-    console.log("showing window then setting width and height to 1000x1000");
-      console.log("resize succeeded");
+      console.log("show succeeded");
     }, function() {
-      console.log("resize failed");
+      console.log("show failed");
     });
 
   _childApp.addEventListener("restored", function (event) {
     console.log("The window has been moved or restored");
     _childApp.setBounds(0, 0, 1000, 1000, function () {
-
     }, function () {
       console.log("The registration was successful");
     }, function (reason) {
