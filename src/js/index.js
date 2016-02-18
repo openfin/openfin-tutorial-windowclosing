@@ -111,6 +111,5 @@ function initNewApp(uuid){
             volumeMatchApplication.run();
             resolve(volumeMatchApplication)
         });
-    })
-
+    });
 }
